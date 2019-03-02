@@ -15,6 +15,8 @@ public class Price {
     private Boolean isRising;
     private Date createdAt;
 
+    public Price(){}
+
     public Price(Date date, Double open, Double low, Double high, Double close){
         this.date = date;
         this.open = open;

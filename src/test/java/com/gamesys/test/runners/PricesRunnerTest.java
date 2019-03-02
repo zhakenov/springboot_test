@@ -7,9 +7,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.text.ParseException;
-import java.util.Date;
-
-import static org.junit.Assert.*;
 
 public class PricesRunnerTest {
 

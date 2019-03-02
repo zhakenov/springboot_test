@@ -1,6 +1,6 @@
 CREATE TABLE prices(
     id INT NOT NULL AUTO_INCREMENT,
-    date DATE,
+    date DATETIME,
     open DOUBLE,
     low DOUBLE,
     high DOUBLE,

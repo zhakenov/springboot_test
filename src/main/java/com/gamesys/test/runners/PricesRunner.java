@@ -1,6 +1,7 @@
 package com.gamesys.test.runners;
 
 import com.gamesys.test.models.Price;
+import com.gamesys.test.services.PricesService;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
@@ -8,6 +9,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -18,6 +20,9 @@ import java.util.List;
 
 @Component
 public class PricesRunner implements ApplicationRunner {
+
+    @Autowired
+    PricesService pricesService;
 
     String url;
     JSONParser jsonParser;
@@ -37,7 +42,7 @@ public class PricesRunner implements ApplicationRunner {
         while (needToGetPrices){
             JSONArray pricesJSONArray = getPricesJSONFromSource(url);
             List<Price> prices = getPricesFromJSONArray(pricesJSONArray);
-            System.out.println(prices.size());
+            pricesService.processPrices(prices);
             Thread.sleep(60*1000);
         }
     }
