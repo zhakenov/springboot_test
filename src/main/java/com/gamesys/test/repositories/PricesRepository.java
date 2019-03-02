@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -58,14 +59,14 @@ public class PricesRepository {
             public Price mapRow(ResultSet rs, int i) throws SQLException {
                 Price price = new Price();
                 price.setId(rs.getInt("id"));
-                price.setDate(rs.getDate("date"));
+                price.setDate(new Date(rs.getTimestamp("date").getTime()));
                 price.setOpen(rs.getDouble("open"));
                 price.setLow(rs.getDouble("low"));
                 price.setHigh(rs.getDouble("high"));
                 price.setClose(rs.getDouble("close"));
                 price.setAverage(rs.getDouble("avg"));
                 price.setRising(rs.getBoolean("is_rising"));
-                price.setCreatedAt(rs.getDate("created_at"));
+                price.setCreatedAt(new Date(rs.getTimestamp("created_at").getTime()));
                 return price;
             }
         });
